@@ -4,5 +4,9 @@
   "Description" : "StreamCo DevOps Lab",
 
   "Resources" : {
+    "VPC" : "AWS::EC2::VPC"
+    "Properties" : {
+      "CidrB"
+    }
   }
 }
