@@ -101,6 +101,26 @@
         "SubnetId": { "Ref": "PublicSubnetA" },
         "RouteTableId": { "Ref": "PublicRouteTable" }
       }
-    }
+    },
+
+    "PublicSubnetB": {
+      "DependsOn": [ "VPC" ],
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": { "Ref": "VPC" },
+        "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "PublicSubnetB", "CIDR" ] }
+      }
+    },
+
+    "PublicSubnetBRouteTableAssociation": {
+      "DependsOn": [ "PublicSubnetB", "PublicRouteTable" ],
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": { "Ref": "PublicSubnetB" },
+        "RouteTableId": { "Ref": "PublicRouteTable" }
+      }
+    },
+
+
   }
 }
