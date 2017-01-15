@@ -137,7 +137,7 @@
     "web0": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "ImageId": "ami-fce3c696",
+        "ImageId": "ami-d1cb91b4",
         "InstanceType": "t2-micro",
         "NetworkInterfaces": [{
           "GroupSet": [ { "Ref": "WebSecurityGroup" } ],
@@ -151,7 +151,7 @@
     "web1": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "ImageId": "ami-fce3c696",
+        "ImageId": "ami-d1cb91b4",
         "InstanceType": "t2-micro",
         "NetworkInterfaces": [{
           "GroupSet": [ { "Ref": "WebSecurityGroup" } ],
