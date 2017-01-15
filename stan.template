@@ -144,7 +144,11 @@
           "DeviceIndex": "0",
           "DeleteOnTermination": "true",
           "SubnetId": { "Ref": "PublicSubnetA" }
-        }]
+          }],
+        "Tags": [
+          { "Key": "Name", "Value": "web0" },
+          { "Key": "Environment", "Value": "Stan" }
+        ]
       }
     },
 
@@ -154,11 +158,16 @@
         "ImageId": "ami-d1cb91b4",
         "InstanceType": "t2.micro",
         "NetworkInterfaces": [{
+          "AssociatePublicIpAddress": "true",
           "GroupSet": [ { "Ref": "WebSecurityGroup" } ],
           "DeviceIndex": "0",
           "DeleteOnTermination": "true",
           "SubnetId": { "Ref": "PublicSubnetB" }
-        }]
+        }],
+        "Tags": [
+          { "Key": "Name", "Value": "web1"},
+          { "Key": "Environment", "Value": "Stan" }
+        ]
       }
     }
   }
