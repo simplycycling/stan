@@ -132,6 +132,34 @@
           { "IpProtocol": "tcp", "FromPort": "443", "ToPort": "443", "CidrIp": "0.0.0.0/0" }
         ]
       }
+    },
+
+    "web0": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-fce3c696",
+        "InstanceType": "t2-micro",
+        "NetworkInterfaces": [{
+          "GroupSet": [ { "Ref": "WebSecurityGroup" } ],
+          "DeviceIndex": "0",
+          "DeleteOnTermination": "true",
+          "SubnetId": { "Ref": "PublicSubnetA" }
+        }]
+      }
+    },
+
+    "web1": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-fce3c696",
+        "InstanceType": "t2-micro",
+        "NetworkInterfaces": [{
+          "GroupSet": [ { "Ref": "WebSecurityGroup" } ],
+          "DeviceIndex": "0",
+          "DeleteOnTermination": "true",
+          "SubnetId": { "Ref": "PublicSubnetB" }
+        }]
+      }
     }
   }
 }
