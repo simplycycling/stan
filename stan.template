@@ -24,9 +24,9 @@
   "Mappings" : {
 
     "SubnetConfig": {
-      "VPC": "10.44.0.0/16",
-      "PublicSubnetA": "10.44.0.0/24",
-      "PublicSubnetB": "10.44.1.0/24"
+      "VPC"           : { "CIDR": "10.44.0.0/16" },
+      "PublicSubnetA" : { "CIDR": "10.44.0.0/24" },
+      "PublicSubnetB" : { "CIDR": "10.44.1.0/24" }
     }
   },
 
@@ -36,7 +36,7 @@
     "VPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
-        "CidrBlock": "10.0.0.0",
+        "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "VPC", "CIDR"] },
         "Tags": [
           { "Key": "Environment", "Value": "Stan" }
         ]
@@ -54,6 +54,7 @@
 
     "AttachGateway": {
       "Type": "AWS::EC2::VPCGatewayAttachment",
+      "DependsOn": "InternetGateway",
       "Properties": {
         "VpcId": { "Ref": "VPC" },
         "InternetGatewayId": { "Ref": "InternetGateway" }
@@ -80,13 +81,26 @@
       }
     },
 
-    "PublicSubnet": {
-      "DependsOn": "VPC",
+    "PublicSubnetA": {
+      "DependsOn": [ "VPC" ],
       "Type": "AWS::EC2::Subnet",
       "Properties": {
+        "VpcId": { "Ref": "VPC" },
+        "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "PublicSubnetA", "CIDR"  ] },
+        "MapPublicIpOnLaunch": "True",
+        "Tags": [
+          { "Key": "Environment", "Value": "Stan" }
+        ]
+      }
+    },
 
+    "PublicSubnetARouteTableAssociation": {
+      "DependsOn": [ "PublicSubnetA", "PublicRouteTable" ],
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": { "Ref": "PublicSubnetA" },
+        "RouteTableId": { "Ref": "PublicRouteTable" }
       }
     }
-
   }
 }
