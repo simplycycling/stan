@@ -22,13 +22,14 @@
 
 
   "Mappings" : {
+
     "SubnetConfig": {
       "VPC": "10.44.0.0/16",
       "PublicSubnetA": "10.44.0.0/24",
       "PublicSubnetB": "10.44.1.0/24"
     }
   },
-  
+
 
   "Resources" : {
 
