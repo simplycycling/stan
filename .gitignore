@@ -3,3 +3,8 @@
 .DS_Store/
 
 scratch.template
+/stan2.template
+/stan4.template
+/stan3.template
+/.gitignore
+/scaling.template
