@@ -24,7 +24,7 @@ One per AZ, for each web node
 
 2. Write a CFN template that spins this environment up.
 
-3. Add spinning up one ec2 instance per subnet
+3. Add spinning up one ec2 instance per subnet (making sure keys are created for these nodes)
 
 4. Add the EIP in and associate them with each respective instance
 
