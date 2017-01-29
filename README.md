@@ -16,3 +16,8 @@ it outputs the id number of the image that it creates. What I'd like to have
 happen would be for the image number to be outputted to a variable, that would
 be read by cloudformation, rather than having to manually add it to the CF
 stack. 
+
+As it stands, to run this, Packer would be run with the following command:
+
+    packer build -var 'aws_access_key=AKIA...' -var 'aws_secret_key=...' example.json
+    
