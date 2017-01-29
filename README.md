@@ -19,5 +19,5 @@ stack.
 
 As it stands, to run this, Packer would be run with the following command:
 
-    packer build -var 'aws_access_key=AKIA...' -var 'aws_secret_key=...' example.json
+    packer build -var 'aws_access_key=AKIA...' -var 'aws_secret_key=...' stan.json
     
