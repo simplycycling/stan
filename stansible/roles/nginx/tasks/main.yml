@@ -1,0 +1,10 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    update_cache: yes
+
+  # With as little as there is in this role, it would have made more sense
+  # to just make it a task in the playbook, but I did it like this to show
+  # how the directory structure is properly set up, as well as how to call
+  # a role from a playbook.
