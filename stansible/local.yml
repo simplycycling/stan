@@ -1,3 +1,19 @@
 ---
 # Provisioner for Stan image
-- 
+- name: Building Stan image
+  hosts: 127.0.0.1
+  sudo: True
+  vars:
+    user: rsherman
+    password: $6$rounds=100000$/sbCxjESWarMAVsk$/4ebpSQFhVOaejy6cEQ4b6ZjzeP4bG/d5Y27.VGBZwNIgRsKDz1Szw/X0KEmvdNINTFectXjMDI3BXkalMlA.1
+    key: https://github.com/simplycycling.keys
+
+  # The above password is a hash, that's not plaintext
+
+  roles:
+    - nginx
+
+  tasks:
+    - name: Add my user to the image
+      user: name={{ user }} password={{ password }} shell=/bin/bash groups=sudo
+    - authorized_key: user={{ user }} key={{ key }}
